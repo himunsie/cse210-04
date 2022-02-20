@@ -1,31 +1,29 @@
 from game.casting.actor import Actor
 
 
-class Artifact(Actor):
+class Stone(Actor):
     """
-    An item of cultural or historical interest. 
+     
     
-    The responsibility of an Artifact is to provide a message about itself.
+    The responsibility of an Stone is to provide a point system when a stone (gem or rock) is collected.
 
-    Attributes:
-        _message (string): A short description about the artifact.
     """
     def __init__(self):
         super().__init__()
-        self._message = ""
         
-    def get_message(self):
-        """Gets the artifact's message.
+        
+    def get_message(self): #update and rename method
+        """Gets the Stone's value in points
         
         Returns:
-            string: The message.
+            
         """
         return self._message
     
-    def set_message(self, message):
-        """Updates the message to the given one.
+    def set_message(self, message): #update and rename method
+        """Updates points based on type of stone collected (gem or rock).
         
         Args:
-            message (string): The given message.
+           
         """
         self._message = message
