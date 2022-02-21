@@ -1,3 +1,4 @@
+#Armando to work on Director
 class Director:
     """A person who directs the game. 
     
@@ -47,8 +48,11 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
+        # use score instead of banner
         # banner = cast.get_first_actor("banners")
+        #use player instead of robot
         # robot = cast.get_first_actor("robots")
+        # use stones instead of artifacts
         # artifacts = cast.get_actors("artifacts")
 
         # banner.set_text("")
