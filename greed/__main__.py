@@ -22,10 +22,10 @@ CELL_SIZE = 15
 FONT_SIZE = 15
 COLS = 60
 ROWS = 40
-CAPTION = "Robot Finds Kitten"
-DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
+CAPTION = "Greed"
+#DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
-DEFAULT_ARTIFACTS = 40
+DEFAULT_STONES = 40
 
 
 def main():
@@ -33,32 +33,33 @@ def main():
     # create the cast
     cast = Cast()
     
-    # create the banner
-    banner = Actor()
-    banner.set_text("")
-    banner.set_font_size(FONT_SIZE)
-    banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
-    cast.add_actor("banners", banner)
+    # create the score score
+    score = Score()
+    position = Point(0, 0)
+    #score.set_text("")
+    score.set_font_size(FONT_SIZE)
+    score.set_color(WHITE)
+    score.set_position(position)
+    cast.add_actor("scores", score)
     
-    # create the robot
+    # create the player
     x = int(MAX_X / 2)
     y = int(MAX_Y / 2)
     position = Point(x, y)
 
-    robot = Actor()
-    robot.set_text("#")
-    robot.set_font_size(FONT_SIZE)
-    robot.set_color(WHITE)
-    robot.set_position(position)
-    cast.add_actor("robots", robot)
+    player = Actor()
+    player.set_text("⚒︎")
+    player.set_font_size(FONT_SIZE)
+    player.set_color(WHITE)
+    player.set_position(position)
+    cast.add_actor("players", player)
     
-    # create the stones
+    
     # with open(DATA_PATH) as file:
     #     data = file.read()
     #     messages = data.splitlines()
 
-    for n in range(DEFAULT_ARTIFACTS):
+    for n in range(DEFAULT_STONES): #may not need
         text = chr(random.randint(33, 126))
         message = messages[n]
 
@@ -71,14 +72,17 @@ def main():
         g = random.randint(0, 255)
         b = random.randint(0, 255)
         color = Color(r, g, b)
+
+        # create the stones 
+        stone = Stone()
+        stone.set_text(text)
+        stone.set_font_size(FONT_SIZE)
+        stone.set_color(color)
+        stone.set_position(position)
+        stone.set_message(message) #may not need
+        cast.add_actor("stones", stone)
+
         
-        artifact = Artifact()
-        artifact.set_text(text)
-        artifact.set_font_size(FONT_SIZE)
-        artifact.set_color(color)
-        artifact.set_position(position)
-        artifact.set_message(message)
-        cast.add_actor("artifacts", artifact)
     
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
