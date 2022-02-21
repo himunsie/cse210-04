@@ -1,5 +1,6 @@
 from game.casting.actor import Actor
 
+# Diego to work on
 
 class Stone(Actor):
     """
