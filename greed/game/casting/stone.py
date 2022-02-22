@@ -11,6 +11,7 @@ class Stone(Actor):
     """
     def __init__(self):
         super().__init__()
+        self._message=""
         
         
     def get_message(self): #update and rename method
