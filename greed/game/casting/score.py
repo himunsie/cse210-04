@@ -10,3 +10,6 @@ class Score(Actor):
     """
     def __init__(self):
         super().__init__()
+        self.score = 0
+
+    
