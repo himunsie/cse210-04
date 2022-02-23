@@ -45,3 +45,4 @@ root                    (project root folder)
 ## Authors
 ---
 * # TODO: Add your name and email here
+* Diego Gomez (gom21026@byui.edu)
