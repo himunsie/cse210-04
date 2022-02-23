@@ -32,14 +32,15 @@ class Director:
         self._video_service.close_window()
 
     def _get_inputs(self, cast):
-        """Gets directional input from the keyboard and applies it to the ?.
+        """Gets directional input from the keyboard and applies it to the #.
         
         Args:
             cast (Cast): The cast of actors.
         """
-        #robot = cast.get_first_actor("robots")
-        #velocity = self._keyboard_service.get_direction()
-        #robot.set_velocity(velocity)        
+
+        robot = cast.get_first_actor("robots")
+        velocity = self._keyboard_service.get_direction()
+        robot.set_velocity(velocity)
 
     def _do_updates(self, cast):
         """Updates the player position and resolves any collisions with stones.
@@ -47,19 +48,24 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        # banner = cast.get_first_actor("banners")
-        # robot = cast.get_first_actor("robots")
-        # artifacts = cast.get_actors("artifacts")
+        banner = cast.get_first_actor("banners")
+        robot = cast.get_first_actor("robots")
+        gems = cast.get_actors("gems")
+        rocks = cast.get_actors("rocks")
 
-        # banner.set_text("")
-        # max_x = self._video_service.get_width()
-        # max_y = self._video_service.get_height()
-        # robot.move_next(max_x, max_y)
+        banner.set_text("")
+        max_x = self._video_service.get_width()
+        max_y = self._video_service.get_height()
+        robot.move_next(max_x, max_y)
         
-        # for artifact in artifacts:
-        #     if robot.get_position().equals(artifact.get_position()):
-        #         message = artifact.get_message()
-        #         banner.set_text(message)    
+        for rock in rocks:
+            if robot.get_position().equals(rock.get_position()):
+                pass
+                # self._score.decrease() change to actual name of methods
+        for gem in gems:
+            if robot.get_position().equals(gem.get_position()):
+                pass
+                # self._score.increase() change to actual name of methods     
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
@@ -67,7 +73,9 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
-        # self._video_service.clear_buffer()
-        # actors = cast.get_all_actors()
-        # self._video_service.draw_actors(actors)
-        # self._video_service.flush_buffer()
+        self._video_service.clear_buffer()
+        actors = cast.get_all_actors()
+        self._video_service.draw_actors(actors)
+        # add a method in video_service to show the score
+        self._video_service.flush_buffer()
+        
