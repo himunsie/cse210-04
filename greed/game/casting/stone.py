@@ -11,20 +11,26 @@ class Stone(Actor):
     """
     def __init__(self):
         super().__init__()
-        
-        
-    def get_message(self): #update and rename method
-        """Gets the Stone's value in points
+        self._score = 0
+   
+
+
+    def get_score(self):
+        """Gets the artifact's message.
         
         Returns:
-            
+            string: The message.
         """
-        return self._message
+        return self._score
     
-    def set_message(self, message): #update and rename method
-        """Updates points based on type of stone collected (gem or rock).
+    def set_score(self):
+        """Updates the message to the given one.
         
         Args:
-           
+            message (string): The given message.
+        
         """
-        self._message = message
+        if self._text == "*":
+            self._score += 10
+        else:
+            self._score -= 10
