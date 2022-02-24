@@ -1,3 +1,6 @@
+from game.shared.color import Color
+from game.shared.point import Point
+
 class Cast:
     """A collection of actors.
 
@@ -27,7 +30,7 @@ class Cast:
             self._actors[group] = []
             
         if not actor in self._actors[group]:
-            self._actors[group].append(actor)
+            self._actors[group].append(actor)  
 
     def get_actors(self, group):
         """Gets the actors in the given group.
@@ -76,4 +79,4 @@ class Cast:
             actor (Actor): The actor to remove.
         """
         if group in self._actors:
-            self._actors[group].remove(actor)
+            self._actors[group].remove(actor)        

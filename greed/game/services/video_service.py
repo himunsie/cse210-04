@@ -1,4 +1,5 @@
 import pyray
+from raylib import GetTime
 
 
 class VideoService:
@@ -18,6 +19,7 @@ class VideoService:
         self._cell_size = cell_size
         self._frame_rate = frame_rate
         self._debug = debug
+        self._starttime = 0
 
     def close_window(self):
         """Closes the window and releases all computing resources."""
@@ -40,10 +42,11 @@ class VideoService:
         """ 
         text = actor.get_text()
         x = actor.get_position().get_x()
-        y = actor.get_position().get_x()
+        y = actor.get_position().get_y()
         font_size = actor.get_font_size()
         color = actor.get_color().to_tuple()
         pyray.draw_text(text, x, y, font_size, color)
+ 
         
     def draw_actors(self, actors):
         """Draws the text for the given list of actors on the screen.
@@ -104,6 +107,15 @@ class VideoService:
     def _draw_grid(self):
         """Draws a grid on the screen."""
         for y in range(0, self._width, self._cell_size):
-            pyray.draw_line(y, 0, y, self._height, pyray.GRAY)
+            pyray.draw_line(0, y, self._width, y, pyray.GRAY)
         for x in range(0, self._width, self._cell_size):
             pyray.draw_line(x, 0, x, self._height, pyray.GRAY)
+
+    def window_timer(self):
+        timer = GetTime()
+        if timer - self._starttime > 0.01:
+            self.starttime = timer
+            trigger = 1
+        else:
+            trigger = 0    
+        return trigger
