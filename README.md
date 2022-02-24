@@ -44,6 +44,6 @@ root                    (project root folder)
 
 ## Authors
 ---
-* # TODO: Add your name and email here
+* Heidi Munson (mun21014@byui.edu)
 * Armando Martinez (mar21095@byui.edu)
 * Diego Gomez (gom21026@byui.edu)
