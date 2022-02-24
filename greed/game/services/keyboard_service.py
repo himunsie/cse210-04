@@ -1,4 +1,5 @@
 import pyray
+import time
 from game.shared.point import Point
 
 
@@ -27,7 +28,6 @@ class KeyboardService:
             Point: The selected direction.
         """
         dx = 0
-        dy = 0
 
         if pyray.is_key_down(pyray.KEY_LEFT):
             dx = -1
@@ -35,13 +35,16 @@ class KeyboardService:
         if pyray.is_key_down(pyray.KEY_RIGHT):
             dx = 1
         
-        if pyray.is_key_down(pyray.KEY_UP):
-            dy = -1
-        
-        if pyray.is_key_down(pyray.KEY_DOWN):
-            dy = 1
 
-        direction = Point(dx, dy)
+        direction = Point(dx, 0)
         direction = direction.scale(self._cell_size)
         
-        return direction
+        return direction    
+
+    def stone_movement(self):
+        starttime = time.time()
+        timer = 0
+        while timer < 30:
+            timer = timer+1
+            time.sleep(1.0-((time.time() - starttime)%1.0))
+   

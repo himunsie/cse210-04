@@ -43,7 +43,7 @@ def main():
     
     # create the player
     x = int(MAX_X / 2)
-    y = int(MAX_Y / 2)
+    y = int(MAX_Y - (MAX_Y / 8))
     position = Point(x, y)
 
     player = Actor()
@@ -60,7 +60,7 @@ def main():
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
-        position = Point(x, y)
+        position = Point(x, 5)
         position = position.scale(CELL_SIZE)
 
         r = random.randint(0, 255)
@@ -81,7 +81,7 @@ def main():
     # start the game
     keyboard_service = KeyboardService(CELL_SIZE)
     video_service = VideoService(CAPTION, MAX_X, MAX_Y, CELL_SIZE, FRAME_RATE)
-    director = Director(keyboard_service, video_service)
+    director = Director(keyboard_service, video_service, COLS, ROWS, CELL_SIZE, FONT_SIZE)
     director.start_game(cast)
 
 
