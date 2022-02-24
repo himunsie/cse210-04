@@ -18,6 +18,7 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        self._score = 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -39,9 +40,9 @@ class Director:
             cast (Cast): The cast of actors.
         """
 
-        robot = cast.get_first_actor("robots")
+        player = cast.get_first_actor("players")
         velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)
+        player.set_velocity(velocity)
 
     def _do_updates(self, cast):
         """Updates the player position and resolves any collisions with stones.
@@ -49,24 +50,41 @@ class Director:
         Args:
             cast (Cast): The cast of actors.
         """
+        # banner = cast.get_first_actor("banners")
+        # robot = cast.get_first_actor("robots")
+        # gems = cast.get_actors("gems")
+        # rocks = cast.get_actors("rocks")
+
+        # banner.set_text("")
+        # max_x = self._video_service.get_width()
+        # max_y = self._video_service.get_height()
+        # robot.move_next(max_x, max_y)
+        
+        # for rock in rocks:
+        #     if robot.get_position().equals(rock.get_position()):
+        #         pass
+        #         # self._score.decrease() change to actual name of methods
+        # for gem in gems:
+        #     if robot.get_position().equals(gem.get_position()):
+        #         pass
+        #         # self._score.increase() change to actual name of methods    
         banner = cast.get_first_actor("banners")
-        robot = cast.get_first_actor("robots")
-        gems = cast.get_actors("gems")
-        rocks = cast.get_actors("rocks")
+        player = cast.get_first_actor("players")
+        stones = cast.get_actors("stones")
 
         banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
-        robot.move_next(max_x, max_y)
+        player.move_next(max_x, max_y)
         
-        for rock in rocks:
-            if robot.get_position().equals(rock.get_position()):
-                pass
-                # self._score.decrease() change to actual name of methods
-        for gem in gems:
-            if robot.get_position().equals(gem.get_position()):
-                pass
-                # self._score.increase() change to actual name of methods     
+        for stone in stones:
+            if player.get_position().equals(stone.get_position()):
+                stone.set_score()            
+                points = stone.get_score()
+                self._score += points
+                cast.remove_actor("stone", stone)
+                message = "Score: " + str(self._score)
+                banner.set_text(message)    
         
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
