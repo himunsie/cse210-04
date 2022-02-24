@@ -1,3 +1,4 @@
+#Armando to work on Director
 class Director:
     """A person who directs the game. 
     

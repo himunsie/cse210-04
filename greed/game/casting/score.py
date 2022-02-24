@@ -1,5 +1,6 @@
 from game.casting.actor import Actor
 
+#Daniel to work on 
 
 class Score(Actor):
     """
@@ -9,3 +10,7 @@ class Score(Actor):
     """
     def __init__(self):
         super().__init__()
+        self.score = 0
+        
+
+        
