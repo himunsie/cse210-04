@@ -28,4 +28,4 @@ class Stone(Actor):
         Args:
            
         """
-        self._message = message
+        self._message = message  
