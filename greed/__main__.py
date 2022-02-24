@@ -23,7 +23,6 @@ FONT_SIZE = 15
 COLS = 60
 ROWS = 40
 CAPTION = "Greed"
-#DATA_PATH = os.path.dirname(os.path.abspath(__file__)) + "/data/messages.txt"
 WHITE = Color(255, 255, 255)
 DEFAULT_STONES = 40
 
@@ -33,14 +32,14 @@ def main():
     # create the cast
     cast = Cast()
     
-    # create the score score
-    score = Score()
-    position = Point(0, 0)
-    #score.set_text("")
-    score.set_font_size(FONT_SIZE)
-    score.set_color(WHITE)
-    score.set_position(position)
-    cast.add_actor("scores", score)
+    # create the banner
+    banner = Actor()
+    banner.set_text("")
+    banner.set_font_size(FONT_SIZE)
+    banner.set_color(WHITE)
+    banner.set_position(Point(CELL_SIZE, 0))
+    cast.add_actor("banners", banner)
+   
     
     # create the player
     x = int(MAX_X / 2)
@@ -48,8 +47,8 @@ def main():
     position = Point(x, y)
 
     player = Actor()
-    player.set_text("⚒︎")
-    player.set_font_size(FONT_SIZE)
+    player.set_text("#")
+    player.set_font_size(20)
     player.set_color(WHITE)
     player.set_position(position)
     cast.add_actor("players", player)
@@ -60,8 +59,8 @@ def main():
     #     messages = data.splitlines()
 
     for n in range(DEFAULT_STONES): #may not need
-        text = chr(random.randint(33, 126))
-        message = messages[n]
+        characters = [42, 79]
+        text = chr(random.choice(characters))
 
         x = random.randint(1, COLS - 1)
         y = random.randint(1, ROWS - 1)
@@ -79,7 +78,6 @@ def main():
         stone.set_font_size(FONT_SIZE)
         stone.set_color(color)
         stone.set_position(position)
-        stone.set_message(message) #may not need
         cast.add_actor("stones", stone)
 
         
