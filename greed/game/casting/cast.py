@@ -5,7 +5,7 @@ class Cast:
     adding, removing and getting them by a group name.
 
     Attributes:
-         _text (string): The text to display
+        _text (string): The text to display
         _font_size (int): The font size to use.
         _color (Color): The color of the text.
         _position (Point): The screen coordinates.

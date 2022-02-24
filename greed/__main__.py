@@ -53,10 +53,6 @@ def main():
     player.set_position(position)
     cast.add_actor("players", player)
     
-    
-    # with open(DATA_PATH) as file:
-    #     data = file.read()
-    #     messages = data.splitlines()
 
     for n in range(DEFAULT_STONES): #may not need
         characters = [42, 79]
